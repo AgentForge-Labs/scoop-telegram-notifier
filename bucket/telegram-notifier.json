@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "description": "AgentForge Telegram Notifier standalone public-v1 CLI",
+  "homepage": "https://github.com/AgentForge-Labs/telegram-notifier-distributions",
+  "license": "AGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/AgentForge-Labs/telegram-notifier-distributions/releases/download/telegram-notifier-cli-v0.1.0/telegram-notifier_0.1.0_windows_amd64.zip",
+      "hash": "d6882dcf50fcf02ad526730ea95730deb17d80d00d70b2f695f8fdbbecb611b0"
+    },
+    "arm64": {
+      "url": "https://github.com/AgentForge-Labs/telegram-notifier-distributions/releases/download/telegram-notifier-cli-v0.1.0/telegram-notifier_0.1.0_windows_arm64.zip",
+      "hash": "90c94782089ebb41d51572bba7309450abaac05d299f7573e46362b31d84f0c8"
+    }
+  },
+  "bin": "telegram-notifier.exe",
+  "checkver": {
+    "url": "https://github.com/AgentForge-Labs/telegram-notifier-distributions/releases",
+    "regex": "telegram-notifier-cli-v([\\d.]+)"
+  }
+}
