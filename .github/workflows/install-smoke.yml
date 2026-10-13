@@ -1,0 +1,27 @@
+name: Gerçek Scoop kurulum doğrulaması
+
+on:
+  push:
+    paths:
+      - bucket/telegram-notifier.json
+      - .github/workflows/install-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-windows-install:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Scoop ile halka açık bucket kurulumu
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          Invoke-WebRequest -Uri https://get.scoop.sh -OutFile "$env:RUNNER_TEMP\install-scoop.ps1"
+          & "$env:RUNNER_TEMP\install-scoop.ps1" -RunAsAdmin
+          $env:PATH = "$env:USERPROFILE\scoop\shims;$env:PATH"
+          scoop bucket add agentforge-telegram-notifier https://github.com/AgentForge-Labs/scoop-telegram-notifier
+          scoop install agentforge-telegram-notifier/telegram-notifier
+          telegram-notifier version
